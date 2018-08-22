@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed|Sawarabi+Gothic");
+$darkBlue: #0047a1;
+$blue: #1565c0;
+$purple: #001144;
+$shadow: 2px 2px 8px 2px $purple;
+@mixin font ($fontSize) {
+  font-family: "Roboto Condensed", "Sawarabi Gothic", sans-serif;
+  font-size: $fontSize;
+}
+@mixin color($col,$back) {
+  color: $col;
+  background: $back;
+}
+@mixin back($back,$rad) {
+  background: $back;
+  box-shadow: $shadow;
+  border-radius: $rad;
+}
+body {
+  @include font(1.2em);
+  @include color($darkBlue,#fafafa);
+  text-align: center;
+}
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  button {
+    @include font (1em);
+    color: $darkBlue;
+    @include back (#e3f2fd,20px);
+    cursor: pointer;
+    box-shadow: $shadow;
+    flex-basis: 180px;
+    padding: 10px;
+    border: $blue 2px solid;
+    transition: 0.5s;
+    &::-moz-focus-inner {
+      border: 0;
+    }
+    &:hover {
+      @include color($blue,cyan);
+    }
+    &:active {
+      @include color(white,$blue);
+      border-color: $darkBlue;
+      box-shadow: none;
+    }
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+svg {
+  @include back(#e0f2f1,5px);
+}
+#tooltip {
+  display: none;
+  position: absolute;
+  pointer-events: none;
+  @include back(#99ff99,20px);
+  padding: 10px;
+}
+foreignObject {
+  pointer-events: none;
+  overflow: hidden;
+  font-size: 12px;
+  color: $purple;
+  padding: 5px;
+}
+#legend {
+  text {
+    font-family: "Roboto Condensed", "Sawarabi Gothic", sans-serif;
+    fill: $darkBlue;
+    stroke: $blue;
+  }
+  rect {
+    stroke: black;
+    rx: 5px;
+  }
+}
